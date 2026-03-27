@@ -14,7 +14,7 @@ export async function getProfile(userId: string): Promise<Profile | null> {
     .maybeSingle();
 
   if (error) {
-    console.error('获取用户信息失败:', error);
+    console.error('Failed to get user profile:', error);
     return null;
   }
   return data;
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       })
       .catch(error => {
-        toast.error(`获取用户信息失败: ${error.message}`);
+        toast.error(`Failed to get user session: ${error.message}`);
       })
       .finally(() => {
         setLoading(false);
