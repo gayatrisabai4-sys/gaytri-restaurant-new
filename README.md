@@ -1,95 +1,73 @@
-# Welcome to Your Miaoda Project
-Miaoda Application Link URL
-    URL:https://medo.dev/projects/app-ajsk2c53nr41
+# Gayatri Restaurant
 
-# Welcome to Your Miaoda Project
+A premium food ordering and reservation system for Gayatri Restaurant. Authentic Indian taste with a modern digital experience.
 
-## Project Info
+## ✨ Features
 
-## Project Directory
+- **Premium Menu**: Explore our authentic Indian dishes with high-quality, professional food photography.
+- **Real-time Cart**: Add items to your cart, adjust quantities, and place orders with ease.
+- **Table Reservation**: Book your favorite table in advance for a seamless dining experience.
+- **Admin Dashboard**: Comprehensive management of menu items, orders, and reservations.
+- **Modern & Responsive UI**: Built with React, Tailwind CSS, and Shadcn UI, optimized for all devices.
+- **Secure Backend**: Powered by Supabase for reliable data management and authentication.
 
-```
-├── README.md # Documentation
-├── components.json # Component library configuration
-├── index.html # Entry file
-├── package.json # Package management
-├── postcss.config.js # PostCSS configuration
-├── public # Static resources directory
-│   ├── favicon.png # Icon
-│   └── images # Image resources
-├── src # Source code directory
-│   ├── App.tsx # Entry file
-│   ├── components # Components directory
-│   ├── context # Context directory
-│   ├── db # Database configuration directory
-│   ├── hooks # Common hooks directory
-│   ├── index.css # Global styles
-│   ├── layout # Layout directory
-│   ├── lib # Utility library directory
-│   ├── main.tsx # Entry file
-│   ├── routes.tsx # Routing configuration
-│   ├── pages # Pages directory
-│   ├── services # Database interaction directory
-│   ├── types # Type definitions directory
-├── tsconfig.app.json # TypeScript frontend configuration file
-├── tsconfig.json # TypeScript configuration file
-├── tsconfig.node.json # TypeScript Node.js configuration file
-└── vite.config.ts # Vite configuration file
-```
+## 🚀 Getting Started
 
-## Tech Stack
+### Prerequisites
 
-Vite, TypeScript, React, Supabase
+- Node.js (v20+)
+- npm or pnpm
+- Supabase account (for backend services)
 
-## Development Guidelines
+### Installation
 
-### How to edit code locally?
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   ```
 
-You can choose [VSCode](https://code.visualstudio.com/Download) or any IDE you prefer. The only requirement is to have Node.js and npm installed.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-### Environment Requirements
+3. **Set up environment variables**:
+   Create a `.env` file in the root directory and add your Supabase credentials:
+   ```env
+   VITE_SUPABASE_URL=your_supabase_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-```
-# Node.js ≥ 20
-# npm ≥ 10
-Example:
-# node -v   # v20.18.3
-# npm -v    # 10.8.2
-```
+4. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-### Installing Node.js on Windows
+## 🌐 Deployment
 
-```
-# Step 1: Visit the Node.js official website: https://nodejs.org/, click download. The website will automatically suggest a suitable version (32-bit or 64-bit) for your system.
-# Step 2: Run the installer: Double-click the downloaded installer to run it.
-# Step 3: Complete the installation: Follow the installation wizard to complete the process.
-# Step 4: Verify installation: Open Command Prompt (cmd) or your IDE terminal, and type `node -v` and `npm -v` to check if Node.js and npm are installed correctly.
+### GitHub
+Push your code to a GitHub repository to enable version control and collaboration.
+```bash
+git init
+git add .
+git commit -m "Initial commit: Gayatri Restaurant Improvements"
+git branch -M main
+git remote add origin YOUR_GITHUB_REPO_URL
+git push -u origin main
 ```
 
-### Installing Node.js on macOS
+### Vercel
+Connect your GitHub repository to [Vercel](https://vercel.com) for automatic deployments:
+1. Import your project from GitHub.
+2. Add your `.env` variables in the Vercel project settings.
+3. Vercel will automatically build and deploy every time you push to `main`.
 
-```
-# Step 1: Using Homebrew (Recommended method): Open Terminal. Type the command `brew install node` and press Enter. If Homebrew is not installed, you need to install it first by running the following command in Terminal:
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-Alternatively, use the official installer: Visit the Node.js official website. Download the macOS .pkg installer. Open the downloaded .pkg file and follow the prompts to complete the installation.
-# Step 2: Verify installation: Open Command Prompt (cmd) or your IDE terminal, and type `node -v` and `npm -v` to check if Node.js and npm are installed correctly.
-```
+## 🛠 Tech Stack
 
-### After installation, follow these steps:
-
-```
-# Step 1: Download the code package
-# Step 2: Extract the code package
-# Step 3: Open the code package with your IDE and navigate into the code directory
-# Step 4: In the IDE terminal, run the command to install dependencies: npm i
-# Step 5: In the IDE terminal, run the command to start the development server: npm run dev -- --host 127.0.0.1
-# Step 6: if step 5 failed, try this command to start the development server: npx vite --host 127.0.0.1
-```
-
-### How to develop backend services?
-
-Configure environment variables and install relevant dependencies.If you need to use a database, please use the official version of Supabase.
-
-## Learn More
-
-You can also check the help documentation: Download and Building the app（ [https://intl.cloud.baidu.com/en/doc/MIAODA/s/download-and-building-the-app-en](https://intl.cloud.baidu.com/en/doc/MIAODA/s/download-and-building-the-app-en)）to learn more detailed content.
+- **Frontend**: React 18, Vite, TypeScript
+- **Styling**: Tailwind CSS
+- **Components**: Shadcn UI (Radix UI)
+- **Icons**: Lucide React
+- **Backend**: Supabase (Database, Auth)
+- **Forms**: React Hook Form
+- **Toasts**: Sonner

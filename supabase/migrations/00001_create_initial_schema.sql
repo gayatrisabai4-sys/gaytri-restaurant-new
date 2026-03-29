@@ -159,13 +159,13 @@ CREATE POLICY "Admins can update reservations" ON reservations
 
 -- Insert sample menu data
 INSERT INTO menu_items (name, description, price, category, image_url) VALUES
-  ('Paneer Butter Masala', 'Cottage cheese cubes in rich tomato and butter gravy', 220, 'Main Course', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_8b55408f-e451-4bb1-8d44-0db49c09d7da.jpg'),
-  ('Butter Naan', 'Soft leavened bread brushed with butter', 40, 'Indian Breads', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_4b41caf3-5d1f-40aa-8bee-6c876fbb1ea3.jpg'),
-  ('Samosa', 'Crispy pastry filled with spiced potatoes and peas', 60, 'Starters', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_48e1bc75-24eb-4c37-af03-10170d9e9440.jpg'),
-  ('Chicken Biryani', 'Aromatic basmati rice with tender chicken and spices', 280, 'Main Course', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_1f688c4f-8aa8-4c9a-a20d-d2659c6e34f7.jpg'),
-  ('Tandoori Chicken', 'Marinated chicken grilled in traditional clay oven', 320, 'Starters', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_ecdecc36-5e07-44d8-bbeb-13ad86f8667b.jpg'),
-  ('Dal Makhani', 'Black lentils slow-cooked with butter and cream', 180, 'Main Course', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_de42fcb1-7e18-4301-ae9e-a6e2d2e5d698.jpg'),
-  ('Gulab Jamun', 'Deep-fried milk dumplings soaked in rose syrup', 80, 'Desserts', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_1c86caa7-7d81-4272-82d1-b5a9e69469a2.jpg'),
-  ('Mango Lassi', 'Refreshing yogurt drink with mango pulp', 70, 'Beverages', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_c7a00ba0-597d-42df-bcc1-e54121fd27ef.jpg'),
-  ('Garlic Naan', 'Naan bread topped with fresh garlic and coriander', 50, 'Indian Breads', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_4b41caf3-5d1f-40aa-8bee-6c876fbb1ea3.jpg'),
-  ('Masala Chai', 'Traditional Indian spiced tea', 40, 'Beverages', 'https://miaoda-site-img.s3cdn.medo.dev/images/KLing_c7a00ba0-597d-42df-bcc1-e54121fd27ef.jpg');
+  ('Paneer Butter Masala', 'Cottage cheese cubes in rich tomato and butter gravy', 220, 'Main Course', '/images/paneer_butter_masala.png'),
+  ('Butter Naan', 'Soft leavened bread brushed with butter', 40, 'Indian Breads', '/images/butter_naan.png'),
+  ('Samosa', 'Crispy pastry filled with spiced potatoes and peas', 60, 'Starters', '/images/samosa.png'),
+  ('Chicken Biryani', 'Aromatic basmati rice with tender chicken and spices', 280, 'Main Course', '/images/chicken_biryani.png'),
+  ('Tandoori Chicken', 'Marinated chicken grilled in traditional clay oven', 320, 'Starters', '/images/tandoori_chicken.png'),
+  ('Dal Makhani', 'Black lentils slow-cooked with butter and cream', 180, 'Main Course', 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=1000&auto=format&fit=crop'),
+  ('Gulab Jamun', 'Deep-fried milk dumplings soaked in rose syrup', 80, 'Desserts', 'https://images.unsplash.com/photo-1589119908995-c6800ffca830?q=80&w=1000&auto=format&fit=crop'),
+  ('Mango Lassi', 'Refreshing yogurt drink with mango pulp', 70, 'Beverages', 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?q=80&w=1000&auto=format&fit=crop'),
+  ('Garlic Naan', 'Naan bread topped with fresh garlic and coriander', 50, 'Indian Breads', 'https://images.unsplash.com/photo-1601050690597-df056fb27791?q=80&w=1000&auto=format&fit=crop'),
+  ('Masala Chai', 'Traditional Indian spiced tea', 40, 'Beverages', 'https://images.unsplash.com/photo-1571935445831-7000af7dc69d?q=80&w=1000&auto=format&fit=crop');

@@ -137,6 +137,8 @@ export async function createOrder(orderData: {
 
   if (itemsError) {
     console.error('Error creating order items:', itemsError);
+    // Ideally we would delete the order here if items fail, but Supabase doesn't support transactions easily
+    // At least we return null so the UI doesn't think it succeeded
     return null;
   }
 

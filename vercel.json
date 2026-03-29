@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/(images|assets)/(.*)",
+      "destination": "/$1/$2"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
