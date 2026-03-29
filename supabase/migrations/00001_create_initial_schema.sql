@@ -168,4 +168,8 @@ INSERT INTO menu_items (name, description, price, category, image_url) VALUES
   ('Gulab Jamun', 'Deep-fried milk dumplings soaked in rose syrup', 80, 'Desserts', 'https://images.unsplash.com/photo-1589119908995-c6800ffca830?q=80&w=1000&auto=format&fit=crop'),
   ('Mango Lassi', 'Refreshing yogurt drink with mango pulp', 70, 'Beverages', 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?q=80&w=1000&auto=format&fit=crop'),
   ('Garlic Naan', 'Naan bread topped with fresh garlic and coriander', 50, 'Indian Breads', 'https://images.unsplash.com/photo-1601050690597-df056fb27791?q=80&w=1000&auto=format&fit=crop'),
-  ('Masala Chai', 'Traditional Indian spiced tea', 40, 'Beverages', 'https://images.unsplash.com/photo-1571935445831-7000af7dc69d?q=80&w=1000&auto=format&fit=crop');
+  ('Masala Chai', 'Traditional Indian spiced tea', 40, 'Beverages', 'https://images.unsplash.com/photo-1571935445831-7000af7dc69d?q=80&w=1000&auto=format&fit=crop'),
+  ('Chole Bhature', 'Spicy chickpeas served with deep-fried leavened bread', 150, 'Main Course', 'https://images.unsplash.com/photo-1626132646529-5006375bc912?q=80&w=1000&auto=format&fit=crop'),
+  ('Pav Bhaji', 'Mashed vegetable curry served with buttered bread rolls', 140, 'Main Course', 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=1000&auto=format&fit=crop'),
+  ('Rasgulla', 'Soft cottage cheese balls in thin sugar syrup', 90, 'Desserts', 'https://images.unsplash.com/photo-1626074353765-517a681e40be?q=80&w=1000&auto=format&fit=crop'),
+  ('Lemonade', 'Fresh Indian style lime juice with mint', 50, 'Beverages', 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1000&auto=format&fit=crop');
