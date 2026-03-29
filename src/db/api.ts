@@ -1,7 +1,9 @@
 import { supabase } from './supabase';
 import type { MenuItem, Order, OrderItem, Reservation } from '@/types/types';
 
-// Menu Items
+// ─── Menu Items ───────────────────────────────────────────────────────────────
+
+/** For regular users: only returns available items */
 export async function getMenuItems(): Promise<MenuItem[]> {
   const { data, error } = await supabase
     .from('menu_items')
@@ -14,7 +16,22 @@ export async function getMenuItems(): Promise<MenuItem[]> {
     console.error('Error fetching menu items:', error);
     return [];
   }
-  return Array.isArray(data) ? data : [];
+  return Array.isArray(data) ? (data as MenuItem[]) : [];
+}
+
+/** For admin: returns ALL items including unavailable */
+export async function getAllMenuItems(): Promise<MenuItem[]> {
+  const { data, error } = await supabase
+    .from('menu_items')
+    .select('*')
+    .order('category')
+    .order('name');
+
+  if (error) {
+    console.error('Error fetching all menu items:', error);
+    return [];
+  }
+  return Array.isArray(data) ? (data as MenuItem[]) : [];
 }
 
 export async function getMenuItemsByCategory(category: string): Promise<MenuItem[]> {
@@ -29,7 +46,7 @@ export async function getMenuItemsByCategory(category: string): Promise<MenuItem
     console.error('Error fetching menu items by category:', error);
     return [];
   }
-  return Array.isArray(data) ? data : [];
+  return Array.isArray(data) ? (data as MenuItem[]) : [];
 }
 
 export async function createMenuItem(item: Omit<MenuItem, 'id' | 'created_at'>): Promise<MenuItem | null> {
@@ -43,7 +60,7 @@ export async function createMenuItem(item: Omit<MenuItem, 'id' | 'created_at'>):
     console.error('Error creating menu item:', error);
     return null;
   }
-  return data;
+  return data as MenuItem | null;
 }
 
 export async function updateMenuItem(id: string, updates: Partial<MenuItem>): Promise<MenuItem | null> {
@@ -58,14 +75,11 @@ export async function updateMenuItem(id: string, updates: Partial<MenuItem>): Pr
     console.error('Error updating menu item:', error);
     return null;
   }
-  return data;
+  return data as MenuItem | null;
 }
 
 export async function deleteMenuItem(id: string): Promise<boolean> {
-  const { error } = await supabase
-    .from('menu_items')
-    .delete()
-    .eq('id', id);
+  const { error } = await supabase.from('menu_items').delete().eq('id', id);
 
   if (error) {
     console.error('Error deleting menu item:', error);
@@ -74,7 +88,22 @@ export async function deleteMenuItem(id: string): Promise<boolean> {
   return true;
 }
 
-// Orders
+/** Toggle availability of a menu item (admin use) */
+export async function toggleMenuItemAvailability(id: string, available: boolean): Promise<boolean> {
+  const { error } = await supabase
+    .from('menu_items')
+    .update({ available })
+    .eq('id', id);
+
+  if (error) {
+    console.error('Error toggling availability:', error);
+    return false;
+  }
+  return true;
+}
+
+// ─── Orders ──────────────────────────────────────────────────────────────────
+
 export async function createOrder(orderData: {
   customer_name: string;
   phone: string;
@@ -85,16 +114,9 @@ export async function createOrder(orderData: {
 }): Promise<Order | null> {
   const { customer_name, phone, address, payment_method, total_amount, items } = orderData;
 
-  // Create order
   const { data: order, error: orderError } = await supabase
     .from('orders')
-    .insert({
-      customer_name,
-      phone,
-      address,
-      payment_method,
-      total_amount,
-    })
+    .insert({ customer_name, phone, address, payment_method, total_amount })
     .select()
     .maybeSingle();
 
@@ -103,25 +125,22 @@ export async function createOrder(orderData: {
     return null;
   }
 
-  // Create order items
   const orderItems = items.map(item => ({
-    order_id: order.id,
+    order_id: (order as Order).id,
     menu_item_id: item.menu_item_id,
     item_name: item.item_name,
     quantity: item.quantity,
     unit_price: item.unit_price,
   }));
 
-  const { error: itemsError } = await supabase
-    .from('order_items')
-    .insert(orderItems);
+  const { error: itemsError } = await supabase.from('order_items').insert(orderItems);
 
   if (itemsError) {
     console.error('Error creating order items:', itemsError);
     return null;
   }
 
-  return order;
+  return order as Order;
 }
 
 export async function getOrders(): Promise<Order[]> {
@@ -134,7 +153,7 @@ export async function getOrders(): Promise<Order[]> {
     console.error('Error fetching orders:', error);
     return [];
   }
-  return Array.isArray(data) ? data : [];
+  return Array.isArray(data) ? (data as Order[]) : [];
 }
 
 export async function getOrderItems(orderId: string): Promise<OrderItem[]> {
@@ -147,14 +166,11 @@ export async function getOrderItems(orderId: string): Promise<OrderItem[]> {
     console.error('Error fetching order items:', error);
     return [];
   }
-  return Array.isArray(data) ? data : [];
+  return Array.isArray(data) ? (data as OrderItem[]) : [];
 }
 
 export async function updateOrderStatus(orderId: string, status: string): Promise<boolean> {
-  const { error } = await supabase
-    .from('orders')
-    .update({ status })
-    .eq('id', orderId);
+  const { error } = await supabase.from('orders').update({ status }).eq('id', orderId);
 
   if (error) {
     console.error('Error updating order status:', error);
@@ -163,7 +179,8 @@ export async function updateOrderStatus(orderId: string, status: string): Promis
   return true;
 }
 
-// Reservations
+// ─── Reservations ─────────────────────────────────────────────────────────────
+
 export async function createReservation(reservationData: {
   customer_name: string;
   date: string;
@@ -180,7 +197,7 @@ export async function createReservation(reservationData: {
     console.error('Error creating reservation:', error);
     return null;
   }
-  return data;
+  return data as Reservation | null;
 }
 
 export async function getReservations(): Promise<Reservation[]> {
@@ -194,7 +211,7 @@ export async function getReservations(): Promise<Reservation[]> {
     console.error('Error fetching reservations:', error);
     return [];
   }
-  return Array.isArray(data) ? data : [];
+  return Array.isArray(data) ? (data as Reservation[]) : [];
 }
 
 export async function updateReservationStatus(reservationId: string, status: string): Promise<boolean> {

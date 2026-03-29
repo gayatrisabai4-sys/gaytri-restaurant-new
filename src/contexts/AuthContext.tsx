@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-// @ts-ignore
 import { supabase } from '@/db/supabase';
 import type { User } from '@supabase/supabase-js';
-// @ts-ignore
 import type { Profile } from '@/types/types';
 import { toast } from 'sonner';
+
+// Email domain used for username-based auth
+const AUTH_EMAIL_DOMAIN = 'gayatrirestaurant.com';
 
 export async function getProfile(userId: string): Promise<Profile | null> {
   const { data, error } = await supabase
@@ -17,8 +18,9 @@ export async function getProfile(userId: string): Promise<Profile | null> {
     console.error('Failed to get user profile:', error);
     return null;
   }
-  return data;
+  return data as Profile | null;
 }
+
 interface AuthContextType {
   user: User | null;
   profile: Profile | null;
@@ -41,14 +43,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setProfile(null);
       return;
     }
-
     const profileData = await getProfile(user.id);
     setProfile(profileData);
   };
 
   useEffect(() => {
-    supabase
-      .auth
+    supabase.auth
       .getSession()
       .then(({ data: { session } }) => {
         setUser(session?.user ?? null);
@@ -57,17 +57,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
       })
       .catch(error => {
-        toast.error(`Failed to get user session: ${error.message}`);
+        toast.error(`Failed to get user session: ${(error as Error).message}`);
       })
       .finally(() => {
         setLoading(false);
       });
 
-    // In this function, do NOT use any await calls. Use `.then()` instead to avoid deadlocks.
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    // Do NOT use await in this handler — use .then() to avoid deadlocks
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
       if (session?.user) {
-        getProfile(session.user.id).then(setProfile);
+        getProfile(session.user.id).then(p => setProfile(p));
       } else {
         setProfile(null);
       }
@@ -78,12 +80,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithUsername = async (username: string, password: string) => {
     try {
-      const email = `${username}@miaoda.com`;
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
+      const email = `${username}@${AUTH_EMAIL_DOMAIN}`;
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
       return { error: null };
     } catch (error) {
@@ -93,12 +91,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUpWithUsername = async (username: string, password: string) => {
     try {
-      const email = `${username}@miaoda.com`;
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
+      const email = `${username}@${AUTH_EMAIL_DOMAIN}`;
+      const { error } = await supabase.auth.signUp({ email, password });
       if (error) throw error;
       return { error: null };
     } catch (error) {
@@ -113,7 +107,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, signInWithUsername, signUpWithUsername, signOut, refreshProfile }}>
+    <AuthContext.Provider
+      value={{ user, profile, loading, signInWithUsername, signUpWithUsername, signOut, refreshProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );

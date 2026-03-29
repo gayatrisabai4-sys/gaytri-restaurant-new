@@ -31,7 +31,7 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold gradient-text">Gaytri Restaurant</span>
+          <span className="text-2xl font-bold gradient-text">Gayatri Restaurant</span>
         </Link>
 
         {/* Desktop Navigation */}

@@ -42,9 +42,10 @@ export default function CartPage() {
                       {/* Image */}
                       <div className="h-24 w-24 shrink-0 overflow-hidden rounded-md">
                         <img
-                          src={item.menuItem.image_url || 'https://via.placeholder.com/100'}
+                          src={item.menuItem.image_url || '/default-food.png'}
                           alt={item.menuItem.name}
                           className="h-full w-full object-cover"
+                          onError={e => { (e.target as HTMLImageElement).src = '/default-food.png'; }}
                         />
                       </div>
 

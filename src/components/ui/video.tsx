@@ -11,16 +11,19 @@
  */
 
 import {
+    Player,
     BigPlayButton,
     ControlBar,
     PlayToggle,
     CurrentTimeDisplay,
     TimeDivider,
     DurationDisplay,
-    FullscreenToggle,
+    FullscreenToggle as VideoFullscreenToggle,
     VolumeMenuButton,
     ProgressControl
 } from 'video-react';
+
+const FullscreenToggle = VideoFullscreenToggle as any;
 import 'video-react/dist/video-react.css';
 
 interface VideoProps {

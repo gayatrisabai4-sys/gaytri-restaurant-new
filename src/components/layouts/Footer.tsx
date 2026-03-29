@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           {/* About */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-foreground">Gaytri Restaurant</h3>
+            <h3 className="mb-4 text-lg font-semibold text-foreground">Gayatri Restaurant</h3>
             <p className="text-sm text-muted-foreground">
               Authentic Taste of India. Experience the rich flavors and traditional recipes that
               make Indian cuisine truly special.
@@ -65,7 +65,7 @@ export function Footer() {
 
         <div className="mt-8 border-t border-border pt-6 text-center">
           <p className="text-sm text-muted-foreground">
-            © 2026 Gaytri Restaurant. All rights reserved.
+            © 2026 Gayatri Restaurant. All rights reserved.
           </p>
         </div>
       </div>

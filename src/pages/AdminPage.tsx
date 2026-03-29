@@ -1,6 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { UtensilsCrossed, ShoppingBag } from 'lucide-react';
 
 export default function AdminPage() {
